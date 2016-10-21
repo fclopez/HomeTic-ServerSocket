@@ -5,25 +5,19 @@ var Gpio = require('onoff').Gpio,
 pir = new Gpio(17, 'in', 'both');
 
 socket.on('activar',function(data){
-  switch (data) {
-    case 'on': encenderPIR();
-      break;
-    case 'off': exit();
-      break;
-    default:encenderPIR();
-  }
+  pir.watch(function(err, value) {
+    if (err) exit();
+    if(value == 1){
+      console.log('detected');
+      socket.emit('ledstatus','green');
+    };
+  });
 })
 
 /*funcion que permite observar la entrada del pin de datos de PIR
 y envia un mensaje cuando el parametro valor corresponde a 1  */
 function encenderPIR(){
-  pir.watch(function(err, value) {
-    if (err) exit();
-    console.log('detected');
-    if(value == 1){
-      socket.emit('ledstatus','green');
-    };
-  });
+
 }
 
 function exit() {
