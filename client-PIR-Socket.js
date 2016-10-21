@@ -17,7 +17,7 @@ function encenderPIR(){
     if (err) exit();
       console.log('Intruso detectado: '+ new Date().toTimeString() + value);
       socket.emit('ledstatus','green');
-    };
+    });
 }
 
 function exit() {
