@@ -1,4 +1,4 @@
-/*dependencias*/
+  /*dependencias*/
 var io = require('socket.io');
 var socket = io.connect('http://localhost:8001',{reconnect:true});
 var Gpio = require('onoff').Gpio,
