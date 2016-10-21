@@ -26,6 +26,7 @@ function handler (req, res) {
 io.on('connection', function (socket) {
   /*añade la nueva conexion al array de sockets*/
   sockets[socket.id] = socket;
+  console.log('Usuario conectado: '+ socket.id);
   /*socket.on('disconnect', function() {
     delete sockets[socket.id];*/
 
