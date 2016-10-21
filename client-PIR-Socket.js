@@ -5,20 +5,19 @@ var Gpio = require('onoff').Gpio,
 pir = new Gpio(17, 'in', 'both');
 
 /*inicia la funcion de detección*/
-encenderPIR();
 socket.on('activar',function(data){
-  console.log('Prueba de funcion exitosa..!');
+  encenderPIR();
+  console.log('Sensor PIR Activado.');
   });
 
-/*funcion que permite observar la entrada del pin de datos de PIR
-y envia un mensaje cuando el parametro valor corresponde a 1  */
+/*funcion que permite observar la entrada del pin de datos de PIR */
 function encenderPIR(){
   pir.watch(function(err, value) {
     if (err) exit();
       console.log('Intruso detectado: '+ new Date().toTimeString() + value);
       socket.emit('ledstatus','green');
     });
-}
+  }
 
 function exit() {
   pir.unexport();

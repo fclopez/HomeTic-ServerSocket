@@ -27,8 +27,12 @@ io.on('connection', function (socket) {
   /*añade la nueva conexion al array de sockets*/
   sockets[socket.id] = socket;
   console.log('Usuario conectado: '+ socket.id);
-  /*socket.on('disconnect', function() {
-    delete sockets[socket.id];*/
+
+/*Eventos*/
+
+  socket.on('disconnect', function() {
+    console.log('Usuario conectado: '+ socket.id);
+    delete sockets[socket.id]; });
 
   socket.on('led', function (data) {
     socket.broadcast.emit('led', data);
