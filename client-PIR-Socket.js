@@ -1,5 +1,5 @@
   /*dependencias*/
-var io = require('socket.io');
+var io = require('socket.io-client');
 var socket = io.connect('http://localhost:8001',{reconnect:true});
 var Gpio = require('onoff').Gpio,
 pir = new Gpio(17, 'in', 'both');
