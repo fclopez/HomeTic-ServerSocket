@@ -3,23 +3,22 @@
     <script src = "/socket.io/socket.io.js" > </script>
     <script type=text/javascript src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script>
-        var socket = io.connect();
+        var socket = io.connect('http://localhost:8001',{reconnect:true});
             socket.on('ledstatus', function (data) {
-                console.log(data);
                 $("body").css("background-color", data);
             });
     </script>
     <script>
     function ledOn(){
       socket.emit('led', 'on');
-       
+
     }
     function ledOff(){
       socket.emit('led', 'off');
     }
     </script>
-</head> 
- 
+</head>
+
 <body>
     <input type="button" name="on" id="onButton" value="on" onClick="ledOn();">
     <input type="button" name="off" id="offButton" value="off" onClick="ledOff();">
