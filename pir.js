@@ -9,7 +9,7 @@ pir.watch(function(err, value) {
   if (err) exit();
   buzzer.writeSync(value);
   console.log('Intruder detected');
-  if(value == 1)  require('./mailer').sendEmail();
+  if(value == 1)  /*require('./mailer').sendEmail()*/;
 });
 
 console.log('Pi Bot deployed successfully!');
