@@ -16,15 +16,23 @@
     function ledOff(){
       socket.emit('led', 'off');
     }
+<<<<<<< HEAD
     function pirON(){
       socket.emit('activar', 'on');
     }
+=======
+>>>>>>> 79eeed5d8d66b33119fbca461009090e4c689cd6
     </script>
 </head>
 
 <body>
+<<<<<<< HEAD
     <input type="button" name="onButton" id="onButton" value="encender" onClick="ledOn();">
     <input type="button" name="offButton" id="offButton" value="apagar" onClick="ledOff();">
     <input type="button" name="pirButton" id="pirButton" value="pir" onClick="pirON();">
+=======
+    <input type="button" name="on" id="onButton" value="on" onClick="ledOn();">
+    <input type="button" name="off" id="offButton" value="off" onClick="ledOff();">
+>>>>>>> 79eeed5d8d66b33119fbca461009090e4c689cd6
 </body>
 </html>
