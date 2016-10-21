@@ -27,11 +27,12 @@ io.on('connection', function (socket) {
   /*añade la nueva conexion al array de sockets*/
   sockets[socket.id] = socket;
   console.log('Usuario conectado: '+ socket.id);
+  console.log('Total usuarios conectado: '+ Object.keys(sockets).length);
 
 /*Eventos*/
-
   socket.on('disconnect', function() {
-    console.log('Usuario conectado: '+ socket.id);
+    console.log('Usuario desconectado: '+ socket.id);
+    console.log('Total usuarios conectado: '+ Object.keys(sockets).length);
     delete sockets[socket.id]; });
 
   socket.on('led', function (data) {

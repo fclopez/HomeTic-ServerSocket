@@ -5,17 +5,15 @@ var Gpio = require('onoff').Gpio,
 pir = new Gpio(17, 'in', 'both');
 
 /*inicia la funcion de detección*/
-socket.on('activar',function(data){
-  encenderPIR();
-  console.log('Sensor PIR Activado.');
-  });
+console.log('Cliente Socket RaspberryPI 3 \nIniciando modo de pruebas...');
+socket.on('activar',encenderPIR());
 
 /*funcion que permite observar la entrada del pin de datos de PIR */
 function encenderPIR(){
+  console.log('Sensor PIR Activado.');
   pir.watch(function(err, value) {
     if (err) exit();
       console.log('Intruso detectado: '+ new Date().toTimeString() + value);
-      socket.emit('ledstatus','green');
     });
   }
 
@@ -23,6 +21,3 @@ function exit() {
   pir.unexport();
   process.exit();
 }
-
-console.log('Pi Bot deployed successfully!');
-console.log('Iniciando modo de pruebas...');
