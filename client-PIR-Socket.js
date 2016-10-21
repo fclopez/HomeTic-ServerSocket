@@ -9,7 +9,7 @@ console.log('Cliente Socket RaspberryPI 3 \nIniciando modo de pruebas...');
 /*inicia la funcion de detección*/
 socket.on('activar',function(){
   encenderPIR();
-);
+});
 
 /*funcion que permite observar la entrada del pin de datos de PIR */
 function encenderPIR(){
