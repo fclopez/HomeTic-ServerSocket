@@ -7,7 +7,7 @@ var server = express();
 var websockets = require('./ws');
 
 /*se regresa al directorio padre y entra al directorio app*/
-server.use(express.static(__dirname + '/../app'));
+server.use(express.static(__dirname + '/app'));
 
 http.createServer(server).listen(3000,function(){
 	console.log('Servidor en el puerto %d',this.address().port);
