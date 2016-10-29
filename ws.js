@@ -6,7 +6,6 @@ module.exports = function(server){
   var ws = sio.listen(server);
   var sockets = {};
 
-
   setInterval(function () {
     ws.emit('time', new Date().toTimeString()), 1000
   });
@@ -41,7 +40,6 @@ module.exports = function(server){
       console.log(data);
     });
     /*Fin del bloque de eventos*/
-
   });
 
 };

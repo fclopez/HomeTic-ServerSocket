@@ -14,11 +14,13 @@
 <script>
 /*no se coloca localhost debido a que no estaria tomando la red del servidor*/
     /*var socket = io.connect('http://localhost:3000',{reconnect:true});*/
-    var socket = io.connect();
+    var host = location.origin
+    var socket = io.connect(host);
         socket.on('ledstatus', function (data) {
             $("body").css("background-color", data);
         });
 
+        console.log(host);
     var el = document.getElementById('server-time');
       socket.on('time', function(timeString) {
         el.innerHTML = 'Server time: ' + timeString;
