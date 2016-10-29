@@ -13,7 +13,8 @@
 </body>
 <script>
 /*no se coloca localhost debido a que no estaria tomando la red del servidor*/
-    var socket = io.connect('http://localhost:3000',{reconnect:true});
+    /*var socket = io.connect('http://localhost:3000',{reconnect:true});*/
+    var socket = io.connect('http://server-socket-pi-servidor-sockets.44fs.preview.openshiftapps.com',{reconnect:true});
         socket.on('ledstatus', function (data) {
             $("body").css("background-color", data);
         });
