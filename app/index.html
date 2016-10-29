@@ -1,30 +1,36 @@
 <html>
 <head>
+  <title>Servidor de prueba Socket-io Node-js</title>
     <script src = "/socket.io/socket.io.js" > </script>
     <script type=text/javascript src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script>
-    /*no se coloca localhost debido a que no estaria tomando la red del servidor*/
-        var socket = io.connect('http://192.168.0.3:8001',{reconnect:true});
-            socket.on('ledstatus', function (data) {
-                $("body").css("background-color", data);
-            });
-    </script>
-    <script>
-    function ledOn(){
-      socket.emit('led', 'on');
-    }
-    function ledOff(){
-      socket.emit('led', 'off');
-    }
-    function pirON(){
-      socket.emit('activar', 'on');
-    }
-    </script>
 </head>
 
 <body>
     <input type="button" name="onButton" id="onButton" value="encender" onClick="ledOn();">
     <input type="button" name="offButton" id="offButton" value="apagar" onClick="ledOff();">
     <input type="button" name="pirButton" id="pirButton" value="pir" onClick="pirON();">
+    <p id='server-time'></p>
 </body>
+<script>
+/*no se coloca localhost debido a que no estaria tomando la red del servidor*/
+    var socket = io.connect('http://localhost:3000',{reconnect:true});
+        socket.on('ledstatus', function (data) {
+            $("body").css("background-color", data);
+        });
+
+    var el = document.getElementById('server-time');
+      socket.on('time', function(timeString) {
+        el.innerHTML = 'Server time: ' + timeString;
+      });
+
+function ledOn(){
+  socket.emit('led', 'on');
+}
+function ledOff(){
+  socket.emit('led', 'off');
+}
+function pirON(){
+  socket.emit('activar', 'on');
+}
+</script>
 </html>
