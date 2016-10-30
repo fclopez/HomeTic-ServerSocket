@@ -12,28 +12,30 @@
     <p id='server-time'></p>
 </body>
 <script>
-/*no se coloca localhost debido a que no estaria tomando la red del servidor*/
-    /*var socket = io.connect('http://localhost:3000',{reconnect:true});*/
+
     var host = location.origin;
-    var socket = io.connect(host);
-        socket.on('ledstatus', function (data) {
-            $("body").css("background-color", data);
-        });
-
-        console.log(host);
     var el = document.getElementById('server-time');
-      socket.on('time', function(timeString) {
-        el.innerHTML = 'Server time: ' + timeString;
-      });
+    var socket = io.connect(host);
 
-function ledOn(){
-  socket.emit('led', 'on');
-}
-function ledOff(){
-  socket.emit('led', 'off');
-}
-function pirON(){
-  socket.emit('activar', 'on');
-}
+    socket.on('ledstatus', function (data) {
+      $("body").css("background-color", data);
+    });
+
+    socket.on('time', function(timeString) {
+      el.innerHTML = 'Hora del servidor: ' + timeString;
+    });
+
+    /*Funciones de respuesta*/
+    function ledOn(){
+      socket.emit('led', 'on');
+    }
+
+    function ledOff(){
+      socket.emit('led', 'off');
+    }
+
+    function pirON(){
+      socket.emit('activar', 'on');
+    }
 </script>
 </html>
