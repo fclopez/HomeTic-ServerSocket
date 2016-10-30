@@ -2,10 +2,12 @@
 <head>
   <title>Servidor WSocket-io</title>
     <script src = "/socket.io/socket.io.js" > </script>
-    <script type=text/javascript src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type=text/javascript src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
 
 <body>
+  <h1>Servidor WSocket-io</h1>
+</br>
     <input type="button" name="onButton" id="onButton" value="encender" onClick="ledOn();">
     <input type="button" name="offButton" id="offButton" value="apagar" onClick="ledOff();">
     <input type="button" name="pirButton" id="pirButton" value="pir" onClick="pirON();">
@@ -13,8 +15,8 @@
 </body>
 <script>
 
-    var host = location.origin;
     var el = document.getElementById('server-time');
+    var host = location.origin;
     var socket = io.connect(host);
 
     socket.on('ledstatus', function (data) {
