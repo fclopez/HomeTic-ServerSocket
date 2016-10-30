@@ -12,7 +12,7 @@ var port = process.env.PORT || 8000;
 var index = path.join(__dirname, 'index.html')
 app.use( function(req, res){ res.sendFile(index)})*/
 
-app.use(express.static(__dirname + "/app"));
+app.use(express.static(__dirname + "/view"));
 var server = http.createServer(app)
 
 server.listen(port,function(){

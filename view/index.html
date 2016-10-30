@@ -1,0 +1,62 @@
+<html>
+<head>
+  <title>Servidor WSocket-io</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script type=text/javascript src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src = "/socket.io/socket.io.js" > </script>
+</head>
+<body>
+  <div >
+    <nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">Home</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/about">About</a>
+      </li>
+      <li>
+        <a href="/sitemap">Sitemap</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+    <div class="jumbotron"  style="padding:40px;">
+      <h1>Servidor socket RPI 3</h1>
+      <p id='server-time'></p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+      <input type="button" name="onButton" id="onButton" value="encender" onClick="ledOn();">
+      <input type="button" name="offButton" id="offButton" value="apagar" onClick="ledOff();">
+      <input type="button" name="pirButton" id="pirButton" value="pir" onClick="pirON();">
+    </div>
+  </div>
+</body>
+<script>
+
+    var el = document.getElementById('server-time');
+    var host = location.origin;
+    var socket = io.connect(host);
+
+    socket.on('ledstatus', function (data) {
+      $("body").css("background-color", data);
+    });
+
+    socket.on('time', function(timeString) {
+      el.innerHTML = 'Hora del servidor: ' + timeString;
+    });
+
+    /*Funciones de respuesta*/
+    function ledOn(){
+      socket.emit('led', 'on');
+    }
+
+    function ledOff(){
+      socket.emit('led', 'off');
+    }
+
+    function pirON(){
+      socket.emit('activar', 'on');
+    }
+</script>
+</html>
