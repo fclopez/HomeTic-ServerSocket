@@ -1,5 +1,4 @@
 /*dependencias*/
-//var path = require('path');
 var http = require('http');
 var express = require('express');
 var websockets = require('./ws');
@@ -8,12 +7,15 @@ var websockets = require('./ws');
 var app = express();
 var port = process.env.PORT || 8000;
 
-/*aqui se puede usar un callback si se desea como response de un request
-var index = path.join(__dirname, 'index.html')
-app.use( function(req, res){ res.sendFile(index)})*/
-
+/*define el directorio de las vistas*/
 app.use(express.static(__dirname + "/view"));
-var server = http.createServer(app)
+
+/*callback que devuelve la vista index cuando recibe una peticion de home */
+app.get('/', function(req, res){
+	res.sendFile('index.html')
+});
+
+var server = http.createServer(app);
 
 server.listen(port,function(){
 	websockets(this);
