@@ -4,12 +4,13 @@
   "description": "servidor de ws para HomeTic",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "start": "node index.js"
   },
   "author": "Fabio Lopez C.",
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "socket.io": "*"
   }
 }
