@@ -11,8 +11,7 @@ module.exports = function(server){
   });
 
   ws.on('connection',function(socket){
-    socket.emit('ready');
-
+    socket.emit('ready','true');
     /*añade la nueva conexion al array de sockets*/
     sockets[socket.id] = socket;
     console.log('Usuario conectado: '+ socket.id);
@@ -20,24 +19,19 @@ module.exports = function(server){
 
     /*Eventos*/
     socket.on('disconnect', function() {
+      delete sockets[socket.id];
       console.log('Usuario desconectado: '+ socket.id);
       console.log('Total usuarios conectado: '+ Object.keys(sockets).length);
-      delete sockets[socket.id];
     });
 
-    socket.on('led', function (data) {
-      socket.broadcast.emit('led', data);
-      console.log(data);
+    socket.on('status', function (data) {
+      socket.broadcast.emit('status', data);
+      console.log('Mensaje desde el control: '+ data);
     });
 
-    socket.on('ledstatus', function (data) {
-      socket.broadcast.emit('ledstatus', data);
-      console.log(data);
-    });
-
-    socket.on('activar', function (data) {
-      socket.broadcast.emit('activar', data);
-      console.log(data);
+    socket.on('SensorPIR', function (data) {
+      socket.broadcast.emit('SensorPIR', data);
+      console.log("Mensaje para el control: "+data);
     });
     /*Fin del bloque de eventos*/
   });
