@@ -5,19 +5,15 @@ $(function() {
   var socket = io.connect();
   var el = document.getElementById('server-time');
 
+  while(true){
+    el.innerHTML = 'Hora del servidor: ' + new Date().toTimeString();
+  }
+
 
   socket.on('status', function (data) {
     /*$("body").css("background-color", data);*/
     console.log("Mensaje desde cliente hasta el server :" +data);
   });
-
-
-  /*setInterval(function () {
-		socket.emit('time', new Date().toTimeString()), 1000
-	});
-  socket.on('time', function(timeString) {
-    el.innerHTML = 'Hora del servidor: ' + timeString;
-  });*/
 
   /*Funciones de respuesta*/
   function pirON(){

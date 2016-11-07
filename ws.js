@@ -6,10 +6,6 @@ module.exports = function(server){
   var ws = sio.listen(server);
   var sockets = {};
 
-  setInterval(function () {
-    ws.emit('time', new Date().toTimeString()), 1000
-  });
-
   ws.on('connection',function(socket){
     socket.emit('ready','true');
     /*añade la nueva conexion al array de sockets*/
