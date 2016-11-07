@@ -7,10 +7,10 @@
     "start": "node index.js"
   },
   "author": "Fabio Lopez C.",
-  "license": "ISC",
+  "private": true,
+  "license": "BSD",
   "dependencies": {
-    "express": "^4.14.0",
-    "path": "^0.12.7",
-    "socket.io": "*"
+    "express": "4.13.4",
+    "socket.io": "^1.5.1"
   }
 }
