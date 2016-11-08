@@ -1,14 +1,10 @@
 $(function() {
 
-  //var host = location.origin;
-  //var socket = io.connect(host);
-  var socket = io.connect();
+  var host = location.origin;
+  var socket = io.connect(host);
   var el = document.getElementById('server-time');
 
-  while(true){
-    el.innerHTML = 'Hora del servidor: ' + new Date().toTimeString();
-  }
-
+  el.innerHTML = 'Hora del servidor: ';
 
   socket.on('status', function (data) {
     /*$("body").css("background-color", data);*/

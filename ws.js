@@ -7,7 +7,7 @@ module.exports = function(server){
   var sockets = {};
 
   ws.on('connection',function(socket){
-    socket.emit('ready','true');
+
     /*añade la nueva conexion al array de sockets*/
     sockets[socket.id] = socket;
     console.log('Usuario conectado: '+ socket.id);
@@ -30,6 +30,7 @@ module.exports = function(server){
       console.log("Mensaje para el control: "+data);
     });
     /*Fin del bloque de eventos*/
+    
   });
 
 };
