@@ -23,28 +23,28 @@ module.exports = function(server){
 
     socket.on('statusPIR', function (data) {
       socket.broadcast.emit('msgSPIR', data);
-      console.log('Mensaje desde el control: '+ data);
+      console.log('msgSPIR: '+ data);
     });
 
     socket.on('statusMQ2', function (data) {
       socket.broadcast.emit('msgSMQ2', data);
-      console.log('Mensaje desde el control: '+ data);
+      console.log('msgSMQ2: '+ data);
     });
 
     socket.on('statusLED', function (data) {
       socket.broadcast.emit('msgSLED', data);
-      console.log('Mensaje desde el control: '+ data);
+      console.log('msgSLED: '+ data);
     });
 
     socket.on('statusAGUA', function (data) {
       socket.broadcast.emit('msgSAGUA', data);
-      console.log('Mensaje desde el control: '+ data);
+      console.log('msgSAGUA: '+ data);
     });
 
     socket.on('SensorPIR', function (data) {
       mensaje.sendEmail();
       socket.broadcast.emit('SensorPIR', data);
-      console.log("Mensaje para el control: "+data);
+      console.log("SensorPIR: "+data);
     });
     /*Fin del bloque de eventos*/
 
