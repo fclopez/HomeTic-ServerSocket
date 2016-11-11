@@ -1,6 +1,7 @@
 /*exporta el modulo al servidor que se esta escuchando*/
 module.exports = function(server){
   var sio = require('socket.io');
+  var mensaje = require('./mail');
 
   /*variables globales*/
   var ws = sio.listen(server);
@@ -26,11 +27,12 @@ module.exports = function(server){
     });
 
     socket.on('SensorPIR', function (data) {
+      mensaje.sendEmail();
       socket.broadcast.emit('SensorPIR', data);
       console.log("Mensaje para el control: "+data);
     });
     /*Fin del bloque de eventos*/
-    
+
   });
 
 };
