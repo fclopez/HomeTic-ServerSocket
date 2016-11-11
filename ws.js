@@ -21,8 +21,23 @@ module.exports = function(server){
       console.log('Total usuarios conectado: '+ Object.keys(sockets).length);
     });
 
-    socket.on('status', function (data) {
-      socket.broadcast.emit('status', data);
+    socket.on('statusPIR', function (data) {
+      socket.broadcast.emit('msgSPIR', data);
+      console.log('Mensaje desde el control: '+ data);
+    });
+
+    socket.on('statusMQ2', function (data) {
+      socket.broadcast.emit('msgSMQ2', data);
+      console.log('Mensaje desde el control: '+ data);
+    });
+
+    socket.on('statusLED', function (data) {
+      socket.broadcast.emit('msgSLED', data);
+      console.log('Mensaje desde el control: '+ data);
+    });
+
+    socket.on('statusAGUA', function (data) {
+      socket.broadcast.emit('msgSAGUA', data);
       console.log('Mensaje desde el control: '+ data);
     });
 
