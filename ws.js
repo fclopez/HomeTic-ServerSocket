@@ -21,31 +21,40 @@ module.exports = function(server){
       console.log('Total usuarios conectado: '+ Object.keys(sockets).length);
     });
 
+    /*mensajes del control*/
     socket.on('statusPIR', function (data) {
-      socket.broadcast.emit('msgSPIR', data);
+      socket.broadcast.emit('SensorPIR', data);
       console.log('msgSPIR: '+ data);
     });
 
     socket.on('statusMQ2', function (data) {
-      socket.broadcast.emit('msgSMQ2', data);
+      socket.broadcast.emit('SensorMQ2', data);
       console.log('msgSMQ2: '+ data);
     });
 
     socket.on('statusLED', function (data) {
-      socket.broadcast.emit('msgSLED', data);
+      socket.broadcast.emit('SensorLED', data);
       console.log('msgSLED: '+ data);
     });
 
     socket.on('statusAGUA', function (data) {
-      socket.broadcast.emit('msgSAGUA', data);
+      socket.broadcast.emit('SensorAgua', data);
       console.log('msgSAGUA: '+ data);
     });
+    /* fin mensajes del control*/
 
-    socket.on('SensorPIR', function (data) {
-      mensaje.sendEmail();
-      socket.broadcast.emit('SensorPIR', data);
+    socket.on('msgPIR', function (data) {
+      mensaje.sendEmailPIR();
+      socket.broadcast.emit('msgPIR', data);
       console.log("SensorPIR: "+data);
     });
+
+    socket.on('msgAGUA', function (data) {
+      mensaje.sendEmailAGUA();
+      socket.broadcast.emit('msgAGUA', data);
+      console.log("SensorPIR: "+data);
+    });
+
     /*Fin del bloque de eventos*/
 
   });

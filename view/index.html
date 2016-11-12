@@ -38,7 +38,7 @@
 
       el.innerHTML = 'Hora del servidor: ';
 
-      socket.on('status', function (data) {
+      socket.on('statusPIR', function (data) {
         /*$("body").css("background-color", data);*/
         console.log("Mensaje desde cliente hasta el server :" +data);
       });

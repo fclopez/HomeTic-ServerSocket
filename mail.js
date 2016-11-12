@@ -20,7 +20,7 @@ var transporter = nodemailer.createTransport({
 
 var timerId;
 
-module.exports.sendEmail = function() {
+module.exports.sendEmailPIR = function() {
 
   if (timerId) return;
   timerId = setTimeout(function() {
@@ -35,6 +35,59 @@ module.exports.sendEmail = function() {
     to: 'fclopez4@gmail.com',
     subject: '[HomeTicAPP SensorPIR] Intruso Detectado',
     html: '<b>Sr. fclopez</b>,<br/><br/>Se ha detectado un intruso<br/><br/> Intruso Detectado a las : ' + Date() + ' <br/><br/>Cordialmente,<br/><i>HomeTicAPP</i>',
+  };
+
+  transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Message sent: ' + info.response);
+    }
+  });
+}
+
+
+module.exports.sendEmailPIR = function() {
+
+  if (timerId) return;
+  timerId = setTimeout(function() {
+    clearTimeout(timerId);
+    timerId = null;
+  }, 10000);
+
+  console.log('Enviando un Email..');
+
+  var mailOptions = {
+    from: 'HomeTicAPP <HomeTicAPP@gmail.com>',
+    to: 'fclopez4@gmail.com',
+    subject: '[HomeTicAPP SensorPIR] Intruso Detectado',
+    html: '<b>Sr. fclopez</b>,<br/><br/>Se ha detectado un intruso<br/><br/> Intruso Detectado a las : ' + Date() + ' <br/><br/>Cordialmente,<br/><i>HomeTicAPP</i>',
+  };
+
+  transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Message sent: ' + info.response);
+    }
+  });
+}
+
+module.exports.sendEmailAGUA = function() {
+
+  if (timerId) return;
+  timerId = setTimeout(function() {
+    clearTimeout(timerId);
+    timerId = null;
+  }, 10000);
+
+  console.log('Enviando un Email..');
+
+  var mailOptions = {
+    from: 'HomeTicAPP <HomeTicAPP@gmail.com>',
+    to: 'fclopez4@gmail.com',
+    subject: '[HomeTicAPP SensorPIR] Limite alcanzado',
+    html: '<b>Sr. fclopez</b>,<br/><br/>Se ha alcanzado el limite<br/><br/> Se ha alcanzado el limite de consumo de agua por favor ahorrar <br/><br/>Cordialmente,<br/><i>HomeTicAPP</i>',
   };
 
   transporter.sendMail(mailOptions, function(error, info) {
