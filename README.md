@@ -1,4 +1,4 @@
-Raspberry Pi B+
+Socket Raspberry Pi 3
 
 Node.js
 
@@ -6,8 +6,8 @@ onoff (GPIO)
 
 Socket.io
 
-Button input
-
 Led control
 
-Web frontend# Server-Socket-PI
+nomailer
+
+request
