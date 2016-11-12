@@ -2,6 +2,7 @@
 var http = require('http');
 var express = require('express');
 var websockets = require('./ws');
+var mail = require('./mail');
 
 /*variables globales*/
 var app = express();
