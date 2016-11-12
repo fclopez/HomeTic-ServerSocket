@@ -1,7 +1,6 @@
 /*exporta el modulo al servidor que se esta escuchando*/
 module.exports = function(server){
   var sio = require('socket.io');
-  var mensaje = require('./mail');
 
   /*variables globales*/
   var ws = sio.listen(server);
@@ -21,42 +20,17 @@ module.exports = function(server){
       console.log('Total usuarios conectado: '+ Object.keys(sockets).length);
     });
 
-    /*mensajes del control*/
-    socket.on('statusPIR', function (data) {
+    socket.on('status', function (data) {
+      socket.broadcast.emit('status', data);
+      console.log('Mensaje desde el control: '+ data);
+    });
+
+    socket.on('SensorPIR', function (data) {
       socket.broadcast.emit('SensorPIR', data);
-      console.log('msgSPIR: '+ data);
+      console.log("Mensaje para el control: "+data);
     });
-
-    socket.on('statusMQ2', function (data) {
-      socket.broadcast.emit('SensorMQ2', data);
-      console.log('msgSMQ2: '+ data);
-    });
-
-    socket.on('statusLED', function (data) {
-      socket.broadcast.emit('SensorLED', data);
-      console.log('msgSLED: '+ data);
-    });
-
-    socket.on('statusAGUA', function (data) {
-      socket.broadcast.emit('SensorAgua', data);
-      console.log('msgSAGUA: '+ data);
-    });
-    /* fin mensajes del control*/
-
-    socket.on('msgPIR', function (data) {
-      mensaje.sendEmailPIR();
-      socket.broadcast.emit('msgPIR', data);
-      console.log("SensorPIR: "+data);
-    });
-
-    socket.on('msgAGUA', function (data) {
-      mensaje.sendEmailAGUA();
-      socket.broadcast.emit('msgAGUA', data);
-      console.log("SensorPIR: "+data);
-    });
-
     /*Fin del bloque de eventos*/
-
+    
   });
 
 };
