@@ -45,11 +45,11 @@
 
       /*Funciones de respuesta*/
       function pirON(){
-        socket.emit('SensorPIR', 'true');
+        socket.emit('statusPIR', 'true');
       }
 
       function pirOFF(){
-        socket.emit('SensorPIR', 'false');
+        socket.emit('statusPIR', 'false');
       }
 </script>
 </html>
