@@ -26,9 +26,18 @@
       <h1>Servidor socket RPI 3</h1>
       <p id='server-time'></p>
       <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-      <input type="button" name="pirButton" id="pirButton" value="Activar pir" onClick="pirON();">
-      <input type="button" name="pirButton" id="pirButton" value="Desactivar pir" onClick="pirOFF();">
-    </div>
+      <input type="button" id="pirButton" value="Activar pir" onClick="pirON();">
+      <input type="button" id="pirButton" value="Desactivar pir" onClick="pirOFF();">
+      </br>
+      <input type="button" id="mq2Button" value="Activar mq2" onClick="mq2ON();">
+      <input type="button" id="mq2Button" value="Desactivar mq2" onClick="mq2OFF();">
+      </br>
+      <input type="button" id="ledButton" value="Activar Led" onClick="ledON();">
+      <input type="button" id="ledButton" value="Desactivar Led" onClick="ledOFF();">
+      </br>
+      <input type="button" id="caudalButton" value="Activar Caudal" onClick="caudalON();">
+      <input type="button" id="caudalButton" value="Desactivar Caudal" onClick="caudalOFF();">
+      </div>
   </div>
 </body>
 <script>
@@ -36,7 +45,7 @@
       var socket = io.connect(host);
       var el = document.getElementById('server-time');
       el.innerHTML = 'Hora del servidor: ';
-      socket.on('status', function (data) {
+      socket.on('statusPIR', function (data) {
         /*$("body").css("background-color", data);*/
         console.log("Mensaje desde cliente hasta el server :" +data);
       });
@@ -46,6 +55,27 @@
       }
       function pirOFF(){
         socket.emit('SensorPIR', 'false');
+      }
+
+      function mq2ON(){
+        socket.emit('SensorMQ2', 'true');
+      }
+      function mq2OFF(){
+        socket.emit('SensorMQ2', 'false');
+      }
+
+      function ledON(){
+        socket.emit('LED', 'true');
+      }
+      function ledOFF(){
+        socket.emit('LED', 'false');
+      }
+
+      function caudalON(){
+        socket.emit('SensorCaudal', 'true');
+      }
+      function caudalOFF(){
+        socket.emit('SensorCaudal', 'false');
       }
 </script>
 </html>
