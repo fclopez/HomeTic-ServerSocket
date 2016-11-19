@@ -71,6 +71,17 @@ module.exports = function(server){
       console.log("Mensaje para el control: "+data);
     });
 
+    /*Eventos SensorCaudal*/
+    socket.on('SensorMoto', function (data) {
+      socket.broadcast.emit('SensorMoto', data);
+      console.log("Mensaje para el control: "+data);
+    });
+
+    socket.on('statusMOTO', function (data) {
+      socket.broadcast.emit('statusMOTO', data);
+      console.log("Mensaje para el control: "+data);
+    });
+
 
   });
 

@@ -37,6 +37,9 @@
       </br>
       <input type="button" id="caudalButton" value="Activar Caudal" onClick="caudalON();">
       <input type="button" id="caudalButton" value="Desactivar Caudal" onClick="caudalOFF();">
+    </br>
+    <input type="button" id="motoButton" value="Activar Moto-B" onClick="motoON();">
+    <input type="button" id="motoButton" value="Desactivar Moto-B" onClick="motoOFF();">
       </div>
   </div>
 </body>
@@ -76,6 +79,13 @@
       }
       function caudalOFF(){
         socket.emit('SensorCaudal', 'false');
+      }
+
+      function sensorON(){
+        socket.emit('SensorMoto', 'true');
+      }
+      function sensorOFF(){
+        socket.emit('SensorMoto', 'false');
       }
 </script>
 </html>
